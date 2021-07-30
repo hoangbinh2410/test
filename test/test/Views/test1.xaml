@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="test.Views.test1">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Label No. 1">
+                <Label.FontSize>
+                    <x:StaticExtension Member="local:AppConstants.NormalFontSize" />
+                </Label.FontSize>
+            </Label>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

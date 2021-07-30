@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:test.Views"
+             x:Class="test.Views.Page2">
+    <TableView Intent="Menu">
+        <TableRoot>
+            <TableSection>
+                <TextCell Text="x:Static Demo"
+                          Detail="Access constants or statics"
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type local:test1}" />
+
+                <TextCell Text="x:Reference Demo"
+                          Detail="Reference named elements on the page"
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type local:Test3}" />
+
+                <TextCell Text="x:Type Demo"
+                          Detail="Associate a Button with a Type"
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type local:Test2}" />
+
+                <TextCell Text="x:Array Demo"
+                          Detail="Use an array to fill a ListView"
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type local:Page2}" />
+
+            </TableSection>
+        </TableRoot>
+    </TableView>
+</ContentPage>

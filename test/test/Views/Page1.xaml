@@ -1,12 +1,91 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="test.Views.Page1">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:local="clr-namespace:test.ViewModels"
+             x:Class="test.Views.Page1"
+             x:Name="page"
+             Title="x:Reference Demo">
+
+    <Grid Margin="10">
+        <Grid.BindingContext>
+            <local:EditViewModel />
+        </Grid.BindingContext>
+
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- New Button -->
+        <Button Text="New"
+                Grid.Row="0"
+                Command="{Binding NewCommand}"
+                HorizontalOptions="Start" 
+                CommandParameter="{x:Type local:EditViewModel}"
+                />
+
+        <!-- Entry Form -->
+        <Grid Grid.Row="1"
+              IsEnabled="{Binding IsEditing}">
+
+            <Grid BindingContext="{Binding PersonEdit}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Label Text="Name: " Grid.Row="0" Grid.Column="0" />
+                <Entry Text="{Binding Name}"
+                       Grid.Row="0" Grid.Column="1" 
+                       />
+
+                <Label Text="Age: " Grid.Row="1" Grid.Column="0" />
+                <StackLayout Orientation="Horizontal"
+                             Grid.Row="1" Grid.Column="1">
+                    <Stepper Value="{Binding Age}"
+                             Maximum="100" />
+                    <Label Text="{Binding Age, StringFormat='{0} years old'}"
+                           VerticalOptions="Center" />
+                </StackLayout>
+
+                <Label Text="Skills: " Grid.Row="2" Grid.Column="0" />
+                <Entry Text="{Binding Skills}"
+                       Grid.Row="2" Grid.Column="1" />
+
+            </Grid>
+        </Grid>
+
+        <!-- Submit and Cancel Buttons -->
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Button Text="Submit"
+                    Grid.Column="0"
+                    Command="{Binding SubmitCommand}"
+                    VerticalOptions="CenterAndExpand"
+                    CommandParameter="{x:Type local:EditViewModel}"/>
+
+            <Button Text="Cancel"
+                    Grid.Column="1"
+                    Command="{Binding CancelCommand}"
+                    VerticalOptions="CenterAndExpand"
+                    CommandParameter="{x:Type local:EditViewModel}"/>
+        </Grid>
+
+        <!-- List of Persons -->
+        <ListView Grid.Row="3"
+                  ItemsSource="{Binding Persons}" />
+    </Grid>
 </ContentPage>

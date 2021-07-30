@@ -12,9 +12,12 @@ namespace test
         public App()
         {
             InitializeComponent();
-
-            DependencyService.Register<MockDataStore>();
-            MainPage = new AppShell();
+            //MainPage = new NavigationPage( new Page1());
+            //DependencyService.Register<MockDataStore>();
+            // MainPage = new Page1();
+            //MainPage = new Page2();
+            MainPage = new Test3();
+            //MainPage = new Test2();
         }
 
         protected override void OnStart()
